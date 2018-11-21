@@ -13,21 +13,20 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.verify;
 
-
 class BeforeMethodAspectTest {
 
     private BeforeMethodAspect methodAspect;
 
-    @Spy
+    @Mock
     private Runnable action;
 
-    @Spy
+    @Mock
     private Consumer<Method> methodConsumer;
 
-    @Spy
+    @Mock
     private BiConsumer<Method, Object[]> methodAndArgsConsumer;
 
-    @Spy
+    @Mock
     private List<String> target;
 
     @BeforeEach
@@ -48,7 +47,7 @@ class BeforeMethodAspectTest {
     }
 
     @Test
-    void test_action_was_invoked_with_the_same_method_passed() throws Exception {
+    void test_action_was_invoked_with_the_same_method_passed() {
         List<String> proxy = methodAspect.doBefore(target, methodConsumer);
 
         proxy.size();
@@ -60,7 +59,7 @@ class BeforeMethodAspectTest {
     }
 
     @Test
-    void test_action_was_invoked_with_the_same_method_and_args_passed() throws Exception {
+    void test_action_was_invoked_with_the_same_method_and_args_passed() {
         List<String> proxy = methodAspect.doBefore(target, methodAndArgsConsumer);
 
         proxy.add("42");

@@ -2,8 +2,8 @@ package ru.andrey;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 
 import java.lang.reflect.InvocationHandler;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ class AbstractMethodAspectTest {
 
     private AbstractMethodAspect methodAspect;
 
-    @Spy
+    @Mock
     private InvocationHandler alwaysNullInvocationHandler;
 
     @BeforeEach

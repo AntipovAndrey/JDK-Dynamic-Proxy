@@ -2,8 +2,8 @@ package ru.andrey;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -25,7 +25,7 @@ class InsteadMethodAspectTest {
 
     private AbstractMethodAspect.BiFunction<Method, Object[], String> methodAndArgs;
 
-    @Spy
+    @Mock
     private List<String> target;
 
     @BeforeEach

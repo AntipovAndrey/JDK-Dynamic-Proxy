@@ -17,16 +17,16 @@ class AfterMethodAspectTest {
 
     private AfterMethodAspect methodAspect;
 
-    @Spy
+    @Mock
     private Runnable action;
 
-    @Spy
+    @Mock
     private Consumer<Method> methodConsumer;
 
-    @Spy
+    @Mock
     private BiConsumer<Method, Object[]> methodAndArgsConsumer;
 
-    @Spy
+    @Mock
     private List<String> target;
 
     @BeforeEach
