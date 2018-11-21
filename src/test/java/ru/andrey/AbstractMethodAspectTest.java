@@ -2,16 +2,16 @@ package ru.andrey;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.hasItems;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -19,19 +19,16 @@ import static org.mockito.Mockito.verify;
 class AbstractMethodAspectTest {
 
     private AbstractMethodAspect methodAspect;
+
+    @Spy
     private InvocationHandler alwaysNullInvocationHandler;
 
     @BeforeEach
     void setUp() {
+        MockitoAnnotations.initMocks(this);
+
         methodAspect = new AbstractMethodAspect() {
         };
-
-        alwaysNullInvocationHandler = Mockito.spy(new InvocationHandler() {
-            @Override
-            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                return null;
-            }
-        });
     }
 
     @Test
@@ -51,7 +48,7 @@ class AbstractMethodAspectTest {
 
         List<Class<?>> proxiesInterfaces = Arrays.asList(proxy.getClass().getInterfaces());
 
-        assertThat(proxiesInterfaces, containsInAnyOrder(original.getClass().getInterfaces()));
+        assertThat(proxiesInterfaces, hasItems(original.getClass().getInterfaces()));
     }
 
     @Test
