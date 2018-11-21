@@ -1,4 +1,4 @@
-#JDK Dynamic Proxy
+# JDK Dynamic Proxy
 Simple AOP implementation based on the java.lang.reflect.Proxy class <br/>
 Supports enhancement for objects whose classes implementing at least one interface
 
@@ -8,7 +8,7 @@ It supports the following set of enhancement:
 + Instead of a method invocation with substitution of the return value
 + On a given exception thrown during a method execution. In this case a default value of the method's return type will be returned
 
-##Samples
+## Samples
 #### doBefore 
 ```java
 BeforeMethodAspect beforeMethodAspect = new BeforeMethodAspect();
