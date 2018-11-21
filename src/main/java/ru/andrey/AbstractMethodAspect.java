@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 @SuppressWarnings("unchecked")
@@ -38,10 +40,20 @@ public abstract class AbstractMethodAspect {
         }
     }
 
-
     public <T> T fromHandler(T object, InvocationHandler handler) {
         return proxyOf(object)
                 .withHandler(handler);
+    }
+
+    @FunctionalInterface
+    public interface BiFunction<T, U, R> {
+
+        R apply(T t, U u) throws Exception;
+
+        default <V> BiFunction<T, U, V> andThen(Function<? super R, ? extends V> after) throws Exception {
+            Objects.requireNonNull(after);
+            return (T t, U u) -> after.apply(apply(t, u));
+        }
     }
 
     @FunctionalInterface
